@@ -1,21 +1,23 @@
 export const initialData = {
-    "deck1": {
+    math: {
+        title: 'math',
         "questions": [
             {
                 "questionText": "What is 2+2",
-                "answerText": 4
+                "answerText": "4"
             },
             {
-                "questionText": "What is the capital of Texas",
-                "answerText": "Austin"
+                "questionText": "What is 4+4",
+                "answerText": "8"
             }
         ]
     },
-    "deck2": {
+    geography: {
+        title: 'geography',
         "questions": [
             {
-                "questionText": "What is 2+2",
-                "answerText": 4
+                "questionText": "What country is directly to the north of the USA?",
+                "answerText": "Canada"
             },
             {
                 "questionText": "What is the capital of Texas",

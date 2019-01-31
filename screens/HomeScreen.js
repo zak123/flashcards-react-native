@@ -9,25 +9,23 @@ import {
   View,
   SafeAreaView
 } from 'react-native';
-import { WebBrowser } from 'expo';
 import { initialData } from "../util/data";
+import {connect} from 'react-redux'
+import {receiveDecks} from "../actions";
 
-export default class HomeScreen extends React.Component {
 
-  state = ({
-      decks: initialData,
-  });
+class HomeScreen extends React.Component {
 
   static navigationOptions = {
     title: 'Home',
   };
 
   componentDidMount() {
-      console.log(this.state.decks)
+    this.props.dispatch(receiveDecks(initialData))
   }
 
   _handleDeckPress = (deck) => {
-      this.props.navigation.navigate('QuestionList', {
+      this.props.navigation.navigate('DeckDetail', {
         deck: deck,
       });
   };
@@ -44,10 +42,10 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.helpContainer}>
-              {Object.keys(this.state.decks).map((key) =>
-                  <TouchableOpacity onPress={() => this._handleDeckPress(this.state.decks[key])} style={styles.helpLink} key={key}>
+              {Object.keys(this.props.decks).map((key) =>
+                  <TouchableOpacity onPress={() => this._handleDeckPress(this.props.decks[key])} style={styles.helpLink} key={key}>
                       <Text style={styles.helpLinkText}>{key}</Text>
-                      <Text style={styles.helpLinkText}>{this.state.decks[key]['questions'].length} questions</Text>
+                      <Text style={styles.helpLinkText}>{this.props.decks[key]['questions'].length} questions</Text>
                   </TouchableOpacity>
               )}
 
@@ -59,6 +57,14 @@ export default class HomeScreen extends React.Component {
 
 
 }
+
+const mapStateToProps = (decks) => {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   container: {
