@@ -9,12 +9,12 @@ export const style = StyleSheet.create({
     content: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         padding: 10,
     },
     button: {
         flex: 1,
-        height: 50,
+        maxHeight: 50,
         width: 200,
         alignItems: 'center',
         justifyContent: 'center',

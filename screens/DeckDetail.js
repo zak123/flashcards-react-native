@@ -1,12 +1,12 @@
 import React from 'react';
 import {fetchAllDecks} from "../util/store";
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-
-
-export class DeckDetail extends React.Component {
+import {style} from "../components/styles";
+import { connect } from 'react-redux'
+class DeckDetail extends React.Component {
     state = ({
 
-        deck: this.props.navigation.getParam('deck'),
+        key: this.props.navigation.getParam('key'),
 
     });
     static navigationOptions = {
@@ -15,31 +15,31 @@ export class DeckDetail extends React.Component {
     componentDidMount() {
     }
 
-    refreshDeck() {
-        // Refresh the questions from the selected deck
-        fetchAllDecks((deck) => {
-            this.setState({
-                deck: deck[this.state.deck],
-            })
-        })
-    }
-
     _handleAddCard = () => {
-        this.props.navigation.navigate('AddCard');
+        this.props.navigation.navigate('AddCard', {
+            key: this.state.key,
+        });
     };
 
+    _handleStartQuiz = () => {
+        this.props.navigation.navigate('StartQuiz', {
+            key: this.state.key,
+        });
+    }
+
     render() {
+        const key = this.state.key;
         return (
             <View style={style.container}>
                 <View style={style.content}>
-                    <Text style={{fontWeight: 'bold', fontSize: 24}}>{this.state.deck['title']}</Text>
-                    <Text>{this.state.deck['questions'].length} cards</Text>
+                    <Text style={{fontWeight: 'bold', fontSize: 24}}>{this.props.decks[key]['title']}</Text>
+                    <Text>{this.props.decks[key]['questions'].length} cards</Text>
                 </View>
                 <View style={style.content}>
                     <TouchableOpacity onPress={() => this._handleAddCard()} style={[style.button, {backgroundColor: 'green'}]}>
                         <Text style={{color: 'white'}}>Add Card</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('start')} style={[style.button, {backgroundColor: 'blue'}]}>
+                    <TouchableOpacity onPress={() => this._handleStartQuiz()} style={[style.button, {backgroundColor: 'blue'}]}>
                         <Text style={{color: 'white'}}>Start Quiz</Text>
                     </TouchableOpacity>
                 </View>
@@ -49,3 +49,10 @@ export class DeckDetail extends React.Component {
 
 }
 
+const mapStateToProps = (decks) => {
+    return {
+        decks
+    }
+}
+
+export default connect(mapStateToProps)(DeckDetail)

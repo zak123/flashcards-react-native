@@ -3,12 +3,12 @@ export const initialData = {
         title: 'math',
         "questions": [
             {
-                "questionText": "What is 2+2",
-                "answerText": "4"
+                "question": "What is 2+2",
+                "answer": "4"
             },
             {
-                "questionText": "What is 4+4",
-                "answerText": "8"
+                "question": "What is 4+4",
+                "answer": "8"
             }
         ]
     },
@@ -16,12 +16,12 @@ export const initialData = {
         title: 'geography',
         "questions": [
             {
-                "questionText": "What country is directly to the north of the USA?",
-                "answerText": "Canada"
+                "question": "What country is directly to the north of the USA?",
+                "answer": "Canada"
             },
             {
-                "questionText": "What is the capital of Texas",
-                "answerText": "Austin"
+                "question": "What is the capital of Texas",
+                "answer": "Austin"
             }
         ]
     }

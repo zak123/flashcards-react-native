@@ -11,11 +11,11 @@ function decks (state = {}, action) {
             console.log('CALLED ADD CARD', action)
             return {
                 ...state,
-                [action.card.questionText]: {
-                    questionText: action.card.questionText,
+                [action.card.title]: {
+                    title: action.card.title,
                     questions: [
-                        ...state[action.card.questionText].questions,
-                        {...action.questions}
+                        ...state[action.card.title].questions,
+                        ...action.card.questions
                     ]
                 }
             };
@@ -28,6 +28,7 @@ function decks (state = {}, action) {
         default:
             return state
     }
+
 
 }
 

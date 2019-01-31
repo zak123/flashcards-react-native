@@ -26,7 +26,7 @@ class HomeScreen extends React.Component {
 
   _handleDeckPress = (deck) => {
       this.props.navigation.navigate('DeckDetail', {
-        deck: deck,
+        key: deck.title,
       });
   };
 

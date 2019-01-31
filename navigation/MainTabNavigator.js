@@ -5,13 +5,16 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import { DeckDetail } from "../screens/DeckDetail";
-import {AddCard} from "../screens/AddCard";
+import DeckDetail from "../screens/DeckDetail";
+import AddCard from "../screens/AddCard";
+import StartQuiz from '../screens/StartQuiz';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
     DeckDetail: DeckDetail,
     AddCard: AddCard,
+    StartQuiz: StartQuiz,
 });
 
 HomeStack.navigationOptions = {
