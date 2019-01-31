@@ -20,3 +20,6 @@ Libraries Used:
 - react
 - redux
 - expo
+
+
+ONLY TESTED ON IOS!
