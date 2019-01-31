@@ -15,6 +15,10 @@ class Quiz extends React.Component {
         answer: '',
     });
 
+    static navigationOptions = {
+        title: 'Pop Quiz!',
+    };
+
     handleAnswerChange = (answer) => {
         this.setState({
             answer: answer,
@@ -78,40 +82,40 @@ class Quiz extends React.Component {
 
         return (
             <KeyboardAvoidingView style={style.container} behavior={'padding'}>
-                    {this.state.shouldEnd === true
-                        ?
-                        <View style={style.content}>
-                            <Text style={{fontWeight: 'bold'}}>You answered {this.state.correctAnswers} out of {this.state.questions.length} questions correctly.</Text>
-                            <TouchableOpacity onPress={() => this.handleRestartQuiz()} style={[style.button, {backgroundColor: 'green'}]}>
-                                <Text style={{color: 'white'}}>Restart Quiz</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={[style.button, {backgroundColor: 'blue'}]}>
-                                <Text style={{color: 'white'}}>Go Back</Text>
-                            </TouchableOpacity>
-                        </View>
-                        :
-                        <View style={style.content}>
-                            <Text style={{fontWeight: 'bold'}}>{question}</Text>
-                            <TextInput
-                            style={{height: 40, width: '90%', borderColor: 'gray', borderWidth: 1}}
-                            onChangeText={(text) => this.handleAnswerChange(text)}
-                            placeholder={'blue'}
-                            value={this.state.answer}
-                            />
-                            {this.state.shouldShowAnswer === true
-                                ?
-                                <Text>Answer: {answer}</Text>
-                                :
-                                null
-                            }
-                            <TouchableOpacity onPress={() => this.handleAnswerQuestion()} style={[style.button, {backgroundColor: 'green'}]}>
-                                <Text style={{color: 'white'}}>Submit Answer</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.handleShowAnswer()} style={[style.button, {backgroundColor: 'blue'}]}>
-                                <Text style={{color: 'white'}}>Show Answer</Text>
-                            </TouchableOpacity>
-                        </View>
-                    }
+                {this.state.shouldEnd === true
+                    ?
+                    <View style={style.content}>
+                        <Text style={{fontWeight: 'bold'}}>You answered {this.state.correctAnswers} out of {this.state.questions.length} questions correctly.</Text>
+                        <TouchableOpacity onPress={() => this.handleRestartQuiz()} style={[style.button, {backgroundColor: 'green'}]}>
+                            <Text style={{color: 'white'}}>Restart Quiz</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={[style.button, {backgroundColor: 'blue'}]}>
+                            <Text style={{color: 'white'}}>Go Back</Text>
+                        </TouchableOpacity>
+                    </View>
+                    :
+                    <View style={style.content}>
+                        <Text style={{fontWeight: 'bold'}}>{question}</Text>
+                        <TextInput
+                        style={{height: 40, width: '90%', borderColor: 'gray', borderWidth: 1}}
+                        onChangeText={(text) => this.handleAnswerChange(text)}
+                        placeholder={'blue'}
+                        value={this.state.answer}
+                        />
+                        {this.state.shouldShowAnswer === true
+                            ?
+                            <Text>Answer: {answer}</Text>
+                            :
+                            null
+                        }
+                        <TouchableOpacity onPress={() => this.handleAnswerQuestion()} style={[style.button, {backgroundColor: 'green'}]}>
+                            <Text style={{color: 'white'}}>Submit Answer</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.handleShowAnswer()} style={[style.button, {backgroundColor: 'blue'}]}>
+                            <Text style={{color: 'white'}}>Show Answer</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
             </KeyboardAvoidingView>
         )
     }

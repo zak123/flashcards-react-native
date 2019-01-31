@@ -4,7 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import AddDeck from '../screens/AddDeck';
 import DeckDetail from "../screens/DeckDetail";
 import AddCard from "../screens/AddCard";
 import StartQuiz from '../screens/StartQuiz';
@@ -32,7 +32,7 @@ HomeStack.navigationOptions = {
 };
 
 const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+  AddDeck: AddDeck,
 });
 
 LinksStack.navigationOptions = {

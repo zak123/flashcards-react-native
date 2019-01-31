@@ -12,6 +12,7 @@ import {
 import { initialData } from "../util/data";
 import {connect} from 'react-redux'
 import {receiveDecks} from "../actions";
+import {getiOSNotificationPermission, scheduleNotification} from "../util/notification";
 
 
 class HomeScreen extends React.Component {
@@ -22,6 +23,8 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(receiveDecks(initialData))
+    getiOSNotificationPermission();
+    scheduleNotification();
   }
 
   _handleDeckPress = (deck) => {
