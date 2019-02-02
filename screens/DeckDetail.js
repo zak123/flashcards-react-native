@@ -1,6 +1,6 @@
 import React from 'react';
 import {fetchAllDecks} from "../util/store";
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
 import {style} from "../components/styles";
 import { connect } from 'react-redux'
 class DeckDetail extends React.Component {
@@ -22,9 +22,14 @@ class DeckDetail extends React.Component {
     };
 
     _handleStartQuiz = () => {
-        this.props.navigation.navigate('StartQuiz', {
-            key: this.state.key,
-        });
+        if (this.props.decks[this.state.key].questions.length > 0) {
+            this.props.navigation.navigate('StartQuiz', {
+                key: this.state.key,
+            });
+        } else {
+            Alert.alert('No Questions', 'There are no questions in this deck currently.');
+        }
+
     }
 
     render() {

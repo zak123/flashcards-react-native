@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import {style} from "../components/styles";
 import { connect } from 'react-redux'
 import { addCard } from "../actions";
-
+import { scheduleNotification } from "../util/notification";
 
 class Quiz extends React.Component {
     state = ({
@@ -31,7 +31,7 @@ class Quiz extends React.Component {
         })
     }
 
-    handleAnswerQuestion = () => {
+    handleAnswerQuestion = (correct) => {
         this.setState({
             shouldShowAnswer: false,
             answer: '',
@@ -46,9 +46,14 @@ class Quiz extends React.Component {
             this.setState((prevState) => ({
                 shouldEnd: true,
             }))
+
+            if (this.state.correctAnswers + 1 < this.state.questions.length) {
+                Alert.alert('You need to study.', 'Keep studying until you can get all the answers right! We will remind you tomorrow to study.');
+                scheduleNotification()
+            }
         }
 
-        if (this.state.answer === this.state.questions[this.state.currentQuestion].answer) {
+        if (this.state.answer === this.state.questions[this.state.currentQuestion].answer || correct) {
             this.setState((prevState) => ({
                 correctAnswers: prevState.correctAnswers + 1,
             }))
@@ -58,6 +63,8 @@ class Quiz extends React.Component {
 
 
     }
+
+
 
     handleRestartQuiz = () => {
         this.setState({
@@ -114,6 +121,17 @@ class Quiz extends React.Component {
                         <TouchableOpacity onPress={() => this.handleShowAnswer()} style={[style.button, {backgroundColor: 'blue'}]}>
                             <Text style={{color: 'white'}}>Show Answer</Text>
                         </TouchableOpacity>
+                        {this.state.shouldShowAnswer ?
+                            <View style={{flex: 1, flexDirection: 'row',}}>
+                                <TouchableOpacity onPress={() => this.handleAnswerQuestion(true)} style={[style.button, {backgroundColor: 'green'}]}>
+                                    <Text style={{color: 'white'}}>Correct</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.handleAnswerQuestion(false)} style={[style.button, {backgroundColor: 'red'}]}>
+                                    <Text style={{color: 'white'}}>Incorrect</Text>
+                                </TouchableOpacity>
+                            </View>
+                            :
+                            null}
                     </View>
                 }
             </KeyboardAvoidingView>

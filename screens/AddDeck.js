@@ -28,6 +28,9 @@ class AddDeck extends React.Component {
             })
 
         Keyboard.dismiss();
+        this.props.navigation.navigate('DeckDetail', {
+            key: this.state.deckTitle,
+        });
     }
 
     render() {

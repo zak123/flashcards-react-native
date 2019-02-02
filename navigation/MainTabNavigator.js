@@ -33,6 +33,7 @@ HomeStack.navigationOptions = {
 
 const LinksStack = createStackNavigator({
   AddDeck: AddDeck,
+
 });
 
 LinksStack.navigationOptions = {

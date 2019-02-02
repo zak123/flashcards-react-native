@@ -32,9 +32,6 @@ class AddCard extends React.Component {
         })
     }
 
-    componentDidMount() {
-        console.log(this.props.decks[this.state.key]);
-    }
     render() {
         return (
             <KeyboardAvoidingView style={style.container} behavior={'padding'}>
