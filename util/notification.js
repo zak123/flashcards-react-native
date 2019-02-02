@@ -37,3 +37,8 @@ export function scheduleNotification() {
         schedulingOptions
     );
 }
+
+export function clearScheduledNotification() {
+    Notifications.cancelAllScheduledNotificationsAsync()
+
+}

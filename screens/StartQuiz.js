@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingVi
 import {style} from "../components/styles";
 import { connect } from 'react-redux'
 import { addCard } from "../actions";
-import { scheduleNotification } from "../util/notification";
+import { scheduleNotification, clearScheduledNotification } from "../util/notification";
 
 class Quiz extends React.Component {
     state = ({
@@ -50,6 +50,8 @@ class Quiz extends React.Component {
             if (this.state.correctAnswers + 1 < this.state.questions.length) {
                 Alert.alert('You need to study.', 'Keep studying until you can get all the answers right! We will remind you tomorrow to study.');
                 scheduleNotification()
+            } else {
+                clearScheduledNotification()
             }
         }
 
